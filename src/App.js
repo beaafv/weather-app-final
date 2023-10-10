@@ -60,7 +60,7 @@ const WeatherApp = () => {
 
       <div className="container vh-100 justify-content-center">
         <div className="row m-4 vh-100">
-
+      <h1> Check the Weather for today</h1>
       <form onSubmit={handleSearch}>
         <input style={{width: '50vw', borderRadius:'4px', height:'5vh', borderColor:'blue', display:'flex', flexDirection:'column', margin:'auto'}}
           type="text"
@@ -77,7 +77,7 @@ const WeatherApp = () => {
       {error && <p>{error}</p>}
       {weatherData && (
         <div className="weather-box col-lg-12">
-          <h2>{weatherData.name}, {weatherData.sys.country} ☀️</h2>
+          <h2>{weatherData.name}, {weatherData.sys.country}</h2>
           <h2>Temperature today: {Math.round(weatherData.main.temp - 273.15)}°C </h2>
           <p>Weather: {weatherData.weather[0].description}</p>
           <p> Temperature sensation: {Math.round(weatherData.main.feels_like - 273.15)} °C </p>
