@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.css';
+import useCountries from './countries';
 
 
 const useWeather = () => {
@@ -22,7 +23,7 @@ const getWeather = async (query) => {
     console.error(error);
     console.log(query);
 
-    setError('Unable to retrieve weather data. Please try again.');
+    setError('did you mean something else?');
   }
   setLoading(false);
 };

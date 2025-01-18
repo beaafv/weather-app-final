@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.css';
-
 import SearchForm from './components/search';
 import WeatherDisplay from './components/weather_display';
 import HistoricalDisplay from './components/historical_display';
 import useWeather from './components/useWeather';
-import useFacts from './components/UseFacts'; 
+import useFacts from './components/UseFacts';
+import useCountries from './components/countries';
 
 const WeatherApp = () => {
   const [query, setQuery] = useState('');
@@ -23,10 +23,18 @@ const WeatherApp = () => {
     getRandomFact
   } = useFacts();
 
+  const {
+    country,
+  loading: countryLoading,
+  error: countryError,
+  } = useCountries
+
   const handleSearch = (e) => {
     e.preventDefault();
     getWeather(query);
     getRandomFact(query);
+
+
   };
 
   return (
@@ -41,6 +49,16 @@ const WeatherApp = () => {
             setQuery={setQuery}
             handleSearch={handleSearch}
           />
+
+          {countryLoading && <p>Loading countries data...</p>}
+          {countryError && <p>{countryError}</p>}
+          {country && (
+            <div>
+              <h2>Country Data</h2>
+              <pre>{JSON.stringify(country, null, 2)}</pre>
+            </div>
+          )}
+
 
           {/* Loading & Error States */}
           {(weatherLoading || factsLoading) && <p>Loading...</p>}
